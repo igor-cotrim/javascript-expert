@@ -1,5 +1,6 @@
 import database from "../database.json" assert { type: "json" };
 import Person from "./person.js";
+import { save } from "./repository.js";
 import TerminalController from "./terminalController.js";
 
 const DEFAULT_LANG = "pt-BR";
@@ -20,7 +21,9 @@ async function mainLoop() {
       return;
     }
     const person = Person.generateInstanceFromString(answer);
-    console.log("person", person.formatted(DEFAULT_LANG));
+
+    terminalController.updateTable(person.formatted(DEFAULT_LANG));
+    await save(person);
 
     return mainLoop();
   } catch (error) {
