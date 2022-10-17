@@ -1,0 +1,23 @@
+[
+  {
+    "id": "0e2025cd-1d8b-418b-bea7-e675ec75bb57",
+    "name": "Durango",
+    "releaseYear": 2022,
+    "available": true,
+    "gasAvailable": true
+  },
+  {
+    "id": "a5229a94-4a65-4d59-970b-c5a174380ec9",
+    "name": "Accord",
+    "releaseYear": 2022,
+    "available": true,
+    "gasAvailable": true
+  },
+  {
+    "id": "dfed0cd5-9ccf-4d4a-b503-d257e4f79c02",
+    "name": "El Camino",
+    "releaseYear": 2022,
+    "available": true,
+    "gasAvailable": true
+  }
+]
