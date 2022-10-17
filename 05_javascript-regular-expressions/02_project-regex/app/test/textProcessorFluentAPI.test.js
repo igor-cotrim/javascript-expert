@@ -26,4 +26,27 @@ describe("textProcessorFluentAPI", () => {
 
     expect(result).to.be.deep.equal(expected);
   });
+
+  it("#divideTextInColumns", () => {
+    const content = [
+      [
+        "Igor  Cotrim,  pessoa  jurídica  de  direito  privado,  inscrita  no  CNPJ  n°",
+        "2222222222222, com sede em Rua a numero 111 , doravante denominado CONTRATADA e",
+      ].join("\n"),
+    ];
+    const result = new TextProcessorFluentAPI(content)
+      .divideTextInColumns()
+      .build();
+    const expected = [
+      [
+        "Igor  Cotrim",
+        "  pessoa  jurídica  de  direito  privado",
+        "  inscrita  no  CNPJ  n°\n2222222222222",
+        " com sede em Rua a numero 111 ",
+        " doravante denominado CONTRATADA e",
+      ],
+    ];
+
+    expect(result).to.be.deep.equal(expected);
+  });
 });
