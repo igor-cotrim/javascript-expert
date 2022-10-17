@@ -49,4 +49,60 @@ describe("textProcessorFluentAPI", () => {
 
     expect(result).to.be.deep.equal(expected);
   });
+
+  it("#removeEmptyCharacters", () => {
+    const content = [
+      [
+        "Igor  Cotrim",
+        "  pessoa  jurídica  de  direito  privado",
+        "  inscrita  no  CNPJ  n°\n2222222222222",
+        " com sede em Rua a numero 111 ",
+        " doravante denominado CONTRATADA e",
+      ],
+    ];
+    const result = new TextProcessorFluentAPI(content)
+      .removeEmptyCharacters()
+      .build();
+    const expected = [
+      [
+        "Igor  Cotrim",
+        "pessoa  jurídica  de  direito  privado",
+        "inscrita  no  CNPJ  n°2222222222222",
+        "com sede em Rua a numero 111",
+        "doravante denominado CONTRATADA e",
+      ],
+    ];
+
+    expect(result).to.be.deep.equal(expected);
+  });
+
+  it("#mapPerson", () => {
+    const content = [
+      [
+        "Igor Cotrim",
+        "brasileiro",
+        "solteiro",
+        "CPF 062.461.885-40",
+        "residente e domiciliada a Rua dos bobos",
+        "zero",
+        "bairro Alphaville",
+        "Bahia.",
+      ],
+    ];
+    const result = new TextProcessorFluentAPI(content).mapPerson().build();
+    const expected = [
+      {
+        nome: "Igor Cotrim",
+        nacionalidade: "Brasileiro",
+        estadoCivil: "Solteiro",
+        documento: "06246188540",
+        rua: "Rua dos bobos",
+        numero: "zero",
+        bairro: "Alphaville",
+        estado: "Bahia",
+      },
+    ];
+
+    expect(result).to.be.deep.equal(expected);
+  });
 });
